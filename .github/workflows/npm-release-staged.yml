@@ -1,0 +1,35 @@
+# Wrapper for the hskksk/gh-actions reusable npm release workflow
+# (semantic-release + `npm stage publish` over OIDC trusted publishing).
+# `.releaserc.json` lives in this repo; toolchain versions come from `.mise.toml`.
+#
+# `toolchain: bun` requires hskksk/gh-actions >= v1.8.0 on the floating `@v1` tag.
+#
+# Before the first release (human tasks):
+# - Configure npm Trusted Publishing for this repository
+# - Approve staged releases with 2FA
+# - Tag the already published version on main (e.g. `v0.0.2`) so semantic-release
+#   continues from 0.0.x instead of starting at 1.0.0
+#
+# Caller job permissions must grant contents/issues/pull-requests write + id-token: write.
+
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: release-main
+  cancel-in-progress: false
+
+jobs:
+  release:
+    uses: hskksk/gh-actions/.github/workflows/npm-release-staged.yml@v1
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    with:
+      toolchain: bun

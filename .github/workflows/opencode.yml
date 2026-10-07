@@ -1,0 +1,33 @@
+# Wrapper for the hskksk/gh-actions reusable OpenCode workflow.
+#
+# Before enabling (human tasks):
+# - Install https://github.com/apps/opencode-agent on this repository
+# - Add OPENCODE_API_KEY and OPENCODE_GO_API_KEY as Actions secrets
+# - Optional: repo variable OPENCODE_TRIGGER_ALLOWLIST (comma-separated logins)
+#
+# Caller job permissions must be exactly id-token: write (OIDC → OpenCode App installation token).
+
+name: opencode
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  issues:
+    types: [opened, edited]
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  opencode:
+    permissions:
+      id-token: write
+    uses: hskksk/gh-actions/.github/workflows/opencode.yml@v1
+    secrets: inherit
+    with:
+      toolchain: bun
+      trigger-allowlist: ${{ vars.OPENCODE_TRIGGER_ALLOWLIST }}
+      # Optional repo-specific instructions (layer 2); gh-actions preset + resolver prompt are added automatically.
+      # prompt: |
+      #   Run `bun test` after editing src/.
