@@ -1,6 +1,6 @@
 {
   "name": "@hskksk/opencode-inject-session-id",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "OpenCode plugin that injects the session ID into the OPENCODE_SESSION_ID environment variable",
   "type": "module",
   "main": "./dist/index.js",
@@ -43,6 +43,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hskksk/opencode-injest-session-id.git"
+    "url": "git+https://github.com/hskksk/opencode-inject-session-id.git"
   }
 }
