@@ -12,11 +12,14 @@
     "dist"
   ],
   "scripts": {
-    "build": "bun build src/index.ts --outdir dist --target node",
+    "build": "bun build src/index.ts --outdir dist --target node --external @opencode/plugin --external @opencode-ai/plugin",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
     "prepublishOnly": "bun run build"
   },
   "dependencies": {
-    "@opencode-ai/plugin": "^1.14.48"
+    "@opencode-ai/plugin": "^1.14.48",
+    "@opencode/plugin": "2.0.24"
   },
   "devDependencies": {
     "typescript": "^5.0.0"
