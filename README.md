@@ -12,11 +12,23 @@ Add this plugin to your OpenCode configuration to make the current session ID av
 npm install @hskksk/opencode-inject-session-id
 ```
 
+## Compatibility
+
+The same package works with both OpenCode generations. The default export has the
+dual shape `{ id, setup, server }`:
+
+- **V1** calls `server()` and uses the `event` and `shell.env` hooks.
+- **V2** reads `id` and `setup()`, subscribes to the server event stream to track the
+  session ID, and sets the variable from the shell `create.before` hook.
+
+V1 object entrypoints require OpenCode `1.18.29` or newer.
+
 ## Development
 
 ```bash
 bun install
 bun run build
+bun test
 ```
 
 ## License
