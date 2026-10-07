@@ -1,0 +1,19 @@
+# Wrapper for the hskksk/gh-actions reusable PR lint workflow
+# (Conventional Commits on the PR title and on every commit in the PR).
+#
+# The caller job grants contents: read + pull-requests: read; no secrets needed
+# (the reusable workflow uses the automatic GITHUB_TOKEN).
+# commitlint falls back to @commitlint/config-conventional when the repo has no
+# commitlint.config.*, so no extra config file is required here.
+
+name: lint-pr
+
+on:
+  pull_request:
+
+jobs:
+  lint-pr:
+    permissions:
+      contents: read
+      pull-requests: read
+    uses: hskksk/gh-actions/.github/workflows/lint-pr.yml@v1

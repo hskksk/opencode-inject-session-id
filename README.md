@@ -31,6 +31,20 @@ bun run build
 bun test
 ```
 
+## CI and release
+
+CI comes from the [hskksk/gh-actions](https://github.com/hskksk/gh-actions) reusable workflows:
+
+| Workflow | Purpose |
+| --- | --- |
+| `.github/workflows/lint-pr.yml` | Conventional Commits on the PR title and on every commit |
+| `.github/workflows/opencode.yml` | `/oc` commands on issues, PRs and comments |
+| `.github/workflows/npm-release-staged.yml` | semantic-release → npm staged publish on `main` |
+
+Releases read `.releaserc.json`, publish with `npm stage publish` (a human approves the staged
+release in 2FA), and commit the version bump back to `main`. Toolchain versions are pinned in
+`.mise.toml` (`node`, `bun`, `npm`).
+
 ## License
 
 MIT
