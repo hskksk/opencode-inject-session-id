@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@opencode-ai/plugin": "^1.14.48",
-    "@opencode/plugin": "2.0.24"
+    "@opencode/plugin": "2.0.27"
   },
   "devDependencies": {
     "@semantic-release/commit-analyzer": "^13.0.1",
@@ -44,5 +44,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hskksk/opencode-inject-session-id.git"
+  },
+  "overrides": {
+    "undici": "8.12.4"
   }
 }
